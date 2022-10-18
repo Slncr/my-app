@@ -6,7 +6,7 @@ import { TodoList } from "./components/TodoList/TodoList";
 import { TodoProvider } from "./utils/contextes/TodoProvider";
 
 export type Todo = {
-  id: number;
+  id: any;
   name: string;
   description: string;
   checked: boolean;

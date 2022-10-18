@@ -2,21 +2,20 @@ import React from "react";
 import { Todo } from "../../App";
 import { TodoContext } from "./TodoContext";
 
+const id = Date.now();
+
 const DEFAULT_TODO_LIST = [
-  { id: 1, name: "task 1", description: "description 1", checked: false },
-  { id: 2, name: "task 2", description: "description 2", checked: false },
   {
-    id: 3,
-    name: "task 3",
-    description:
-      "long description long description long description long description long description ",
-    checked: true,
+    id,
+    name: "task 1",
+    description: "description 1",
+    checked: false,
   },
 ];
 interface TodoProviderProps {
   children: React.ReactNode;
 }
-("zalupa");
+
 export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
   const [todos, setTodos] = React.useState(DEFAULT_TODO_LIST);
   const [todoIdForEdit, setTodoIdForEdit] = React.useState<Todo["id"] | null>(
@@ -31,7 +30,7 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
     setTodos([
       ...todos,
       {
-        id: todos[todos.length - 1].id + 1,
+        id: Date.now() || todos[todos.length - 1].id + 1,
         description,
         name,
         checked: false,
