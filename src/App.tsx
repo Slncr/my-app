@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Header } from "./components/Header/Header";
+import styles from "./App.module.scss";
+import { TodoPanel } from "./components/TodoPanel/TodoPanel";
+import { TodoList } from "./components/TodoList/TodoList";
+import { TodoProvider } from "./utils/contextes/TodoProvider";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export type Todo = {
+  id: number;
+  name: string;
+  description: string;
+  checked: boolean;
+};
+
+export const App = () => (
+  <TodoProvider>
+    <div className={styles.app_container}>
+      <div className={styles.container}>
+        <Header />
+        <TodoPanel mode="add" />
+        <TodoList />
+      </div>
     </div>
-  );
-}
-
-export default App;
+  </TodoProvider>
+);
